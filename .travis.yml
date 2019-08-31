@@ -3,7 +3,7 @@ dist: bionic
 compiler:
   - gcc
 git:
-  depth: 2
+  depth: 3
   
 before_install:
   - sudo add-apt-repository universe
@@ -14,9 +14,7 @@ before_install:
   - sudo apt-get install -y guile-2.2-dev
 
 script:
-  - ./bootstrap
-    && ./configure --enable-hardening --with-gnu-filesystem-hierarchy
-    && make -j4 distcheck
+  - echo "hello?"
 
 env:
   - GUILE_BUILD=pkg22
