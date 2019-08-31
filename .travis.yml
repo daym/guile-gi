@@ -11,9 +11,7 @@ before_install:
   - sudo apt-get install -y libffi-dev gir1.2-glib-2.0 libgirepository1.0-dev
     libtool texinfo autoconf automake gnulib git
     texlive-base texlive-generic-recommended texlive-latex-base
-  - if [ $GUILE_BUILD == pkg22 ]; then sudo apt-get install -y guile-2.2-dev;
-    elif [ $GUILE_BUILD == pkg30 ]; then sudo apt-get install -y guile-3.0-dev;
-    else ./tools/ci_prep $GUILE_BUILD; fi
+  - sudo apt-get install -y guile-2.2-dev
 
 script:
   - ./bootstrap
@@ -22,8 +20,6 @@ script:
 
 env:
   - GUILE_BUILD=pkg22
-  - GUILE_BUILD=stable22
-  - GUILE_BUILD=master
   global:
     - GUILD=/usr/bin/guild
     - LANG=C.UTF-8
