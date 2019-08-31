@@ -9,5 +9,5 @@ before_install:
     guile-2.2-dev libtool texinfo autoconf automake gnulib git
     texlive-base texlive-generic-recommended texlive-latex-base
 script:
-    ./bootstrap && ./configure --enable-hardening && make -j4 distcheck"
+    ./bootstrap && ./configure --enable-hardening && make -j4 distcheck
  
