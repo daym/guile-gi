@@ -1,19 +1,34 @@
 language: c
 dist: bionic
+compiler:
+  - clang
+  - gcc
+os:
+  - linux
 git:
   depth: 3
-env:
-  - GUILD=/usr/bin/guild
-  - LANG=C.UTF-8
-  - TERM=dumb
-  - VERBOSE=true
   
-before_install:
+install:
   - sudo add-apt-repository universe
   - sudo apt-get update
   - sudo apt-get install -y libffi-dev gir1.2-glib-2.0 libgirepository1.0-dev
-    guile-2.2-dev libtool texinfo autoconf automake gnulib git
+    libtool texinfo autoconf automake gnulib git
     texlive-base texlive-generic-recommended texlive-latex-base
+  - if [ $GUILE_BUILD == pkg22 ]; then sudo apt-get install -y guile-2.2-dev; fi
+  - if [ $GUILE_BUILD == pkg30 ]; then sudo apt-get install -y guile-3.0-dev; fi
+
 script:
-    ./bootstrap && ./configure --enable-hardening --with-gnu-filesystem-hierarchy && make -j4 distcheck
- 
+  - ./tools/ci_prep.sh $GUILE_BUILD
+    && ./bootstrap
+    && ./configure --enable-hardening --with-gnu-filesystem-hierarchy
+    && make -j4 distcheck
+
+env:
+  - GUILE_BUILD=pkg22
+  - GUILE_BUILD=stable22
+  - GUILE_BUILD=master
+  global:
+    - GUILD=/usr/bin/guild
+    - LANG=C.UTF-8
+    - TERM=dumb
+    - VERBOSE=true
