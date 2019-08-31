@@ -17,7 +17,6 @@ script:
   - echo "hello?"
 
 env:
-  - GUILE_BUILD=pkg22
   global:
     - GUILD=/usr/bin/guild
     - LANG=C.UTF-8
