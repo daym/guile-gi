@@ -2,16 +2,18 @@ language: c
 dist: bionic
 git:
   depth: 3
+env:
+  - GUILD=/usr/bin/guild
+  - LANG=C.UTF-8
+  - TERM=dumb
+  - VERBOSE=true
+  
 before_install:
   - sudo add-apt-repository universe
   - sudo apt-get update
   - sudo apt-get install -y libffi-dev gir1.2-glib-2.0 libgirepository1.0-dev
     guile-2.2-dev libtool texinfo autoconf automake gnulib git
     texlive-base texlive-generic-recommended texlive-latex-base
-  - export GUILD=/usr/bin/guild
-  - export LANG=C.UTF-8
-  - export TERM=dump
-  - export VERBOSE=true
 script:
-    ./bootstrap && ./configure --enable-hardening && make -j4 distcheck
+    ./bootstrap && ./configure --enable-hardening --with-gnu-filesystem-hierarchy && make -j4 distcheck
  
