@@ -23,6 +23,8 @@ script:
 env:
   matrix:
     - GUILE_BUILD=pkg22
+    - GUILE_BUILD=stable22
+    - GUILE_BUILD=master
   global:
     - GUILD=/usr/bin/guild
     - LANG=C.UTF-8
