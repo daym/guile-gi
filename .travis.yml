@@ -8,6 +8,10 @@ before_install:
   - sudo apt-get install -y libffi-dev gir1.2-glib-2.0 libgirepository1.0-dev
     guile-2.2-dev libtool texinfo autoconf automake gnulib git
     texlive-base texlive-generic-recommended texlive-latex-base
+  - export GUILD=/usr/bin/guild
+  - export LANG=C.UTF-8
+  - export TERM=dump
+  - export VERBOSE=true
 script:
     ./bootstrap && ./configure --enable-hardening && make -j4 distcheck
  
