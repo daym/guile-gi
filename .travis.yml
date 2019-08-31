@@ -17,7 +17,7 @@ before_install:
   - if [ $GUILE_BUILD == master ]; then ./tools/ci_prep.sh master; fi
 
 script:
-  - if [ -f guile_build.txt]; then
+  - if [ -f guile_build.txt ]; then
       ./bootstrap
       && ./configure --enable-hardening --with-gnu-filesystem-hierarchy
       && make -j4 distcheck;
