@@ -13,8 +13,7 @@ before_install:
     texlive-base texlive-generic-recommended texlive-latex-base
   - if [ $GUILE_BUILD == pkg22 ]; then sudo apt-get install -y guile-2.2-dev; fi
   - if [ $GUILE_BUILD == pkg30 ]; then sudo apt-get install -y guile-3.0-dev; fi
-  - if [ $GUILE_BUILD == stable22 ]; then ./tools/ci_prep.sh stable22; fi
-  - if [ $GUILE_BUILD == master ]; then ./tools/ci_prep.sh master; fi
+  - ./tools/ci_prep.sh $GUILE_BUILD
 
 script:
   - if [ -f guile_build.txt ]; then
