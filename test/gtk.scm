@@ -134,6 +134,17 @@
         (tree-view (tree-view:new)))
     (tree-view:set-model tree-view tree-store)))
 
+(test-assert "tree-view:set-model with null GClosure, then read it"
+  (let ((tree-store (tree-store:new (vector <GClosure>)))
+        (tree-view (tree-view:new))
+        (iter (make <GtkTreeIter>))
+        (value (make <GValue>)))
+    (tree-view:set-model tree-view tree-store)
+    (tree-store:append! tree-store iter #f)
+    (tree-store:get-value! tree-store (tree-model:iter-first tree-store) 0 value)
+    (value)
+    (exit 1)))
+
 (test-assert "load DrawingArea"
   (every load-by-name?
          '("Gtk" "Gtk" "Gtk" "Gtk" "Gtk")
